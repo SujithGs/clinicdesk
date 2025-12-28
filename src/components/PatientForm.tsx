@@ -14,8 +14,8 @@ const PatientForm: React.FC = () => {
 	const [phoneError, setPhoneError] = useState<string>("");
 	const [address, setAddress] = useState<string>("");
 	const [visitDate, setVisitDate] = useState<Date>(new Date());
-	const [followUp, setFollowUp] = useState<boolean>(false);
-	const [followUpDate, setFollowUpDate] = useState<Date | null>(null);
+	// const [followUp, setFollowUp] = useState<boolean>(false);
+	// const [followUpDate, setFollowUpDate] = useState<Date | null>(null);
 	const [reason, setReason] = useState<string>("");
 	const [clinicalNotes, setclinicalNotes] = useState<string>("");
 
@@ -58,10 +58,8 @@ const PatientForm: React.FC = () => {
 				visit_date: visitDate.toISOString(),
 				reason,
 				clinical_notes: clinicalNotes,
-				follow_up_required: followUp,
-				follow_up_date: followUpDate
-					? followUpDate.toISOString()
-					: null,
+				follow_up_required: false,
+				follow_up_date: null
 			});
 
 			toast.success("Patient details saved successfully");
@@ -118,6 +116,7 @@ const PatientForm: React.FC = () => {
 		</div>
 	);
 
+	{/*
 	const renderFollowUpInput = (
 		value: string,
 		onClick: () => void,
@@ -146,7 +145,7 @@ const PatientForm: React.FC = () => {
 				</span>
 			)}
 		</div>
-	);
+	);*/}
 
 	return (
 		<div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-10">
@@ -206,7 +205,7 @@ const PatientForm: React.FC = () => {
 						<label className={labelClass}>Visit Date & Time</label>
 						<DatePicker
 							selected={visitDate}
-							onChange={(date: Date) => setVisitDate(date)}
+							onChange={(date: Date | null) => {if (date) setVisitDate(date);}}
 							showTimeSelect
 							dateFormat="dd/MM/yyyy, HH:mm"
 							locale={enIN}

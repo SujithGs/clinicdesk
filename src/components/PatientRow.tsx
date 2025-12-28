@@ -47,6 +47,7 @@ export default function PatientRow({ patient, onUpdated, onDelete }: PatientRowP
 
 	async function confirmDelete() {
 		try {
+			if(!patient.id) throw new Error('Patient ID is unknown!');
 			await onDelete(patient.id);
 			setShowConfirm(false);
 			toast.success("Patient deleted successfully!");
