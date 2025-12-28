@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900;
+}
+
+.react-datepicker__close-icon::after {
+  background-color: transparent;
+  color: #9ca3af; /* gray-400 */
+  font-size: 14px;
+}
+
+.react-datepicker__close-icon:hover::after {
+  color: #4b5563; /* gray-600 */
+}
